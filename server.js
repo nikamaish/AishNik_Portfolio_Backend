@@ -9,7 +9,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins =["http://localhost:5173", "https://aishwarya-nikam-portfolio.vercel.app"]
+
+app.use(cors({
+  origin:allowedOrigins,
+  methods:["GET", "POST"],
+  credentials:true, // Allow cookies to be sent
+}));
 app.use(express.json());
 
 app.use("/api/contact", contactRoutes);
